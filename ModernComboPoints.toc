@@ -1,0 +1,7 @@
+## Interface: 20400
+## Title: ModernComboPoints
+## Author: Oldsalt (Smolderforge)
+## Notes: Adds more visibility to combo points
+## DefaultState: disabled
+## SavedVariables: modernComboSavedSettings
+ModernComboPoints.lua
