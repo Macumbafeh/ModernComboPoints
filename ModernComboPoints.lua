@@ -266,6 +266,184 @@ SettingsFontSizeSlider:SetScript("OnLeave", function()
 	end
 end)
 
+local SettingsColorTitle = ModernComboSettingsPanel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+SettingsColorTitle:SetPoint("TOPLEFT", ModernComboSettingsPanel, 15, -170)
+SettingsColorTitle:SetFont("Fonts\\FRIZQT__.TTF", 10)
+SettingsColorTitle:SetJustifyH("LEFT")
+SettingsColorTitle:SetTextColor(1, 1, 1)
+SettingsColorTitle:SetText("Color settings")
+
+local SettingsRedColorFont = ModernComboSettingsPanel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+SettingsRedColorFont:SetPoint("TOPLEFT", ModernComboSettingsPanel, 41, -190)
+SettingsRedColorFont:SetFont("Fonts\\FRIZQT__.TTF", 13)
+SettingsRedColorFont:SetJustifyH("LEFT")
+SettingsRedColorFont:SetText("Red")
+local SettingsRedLevelFont = ModernComboSettingsPanel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+SettingsRedLevelFont:SetPoint("CENTER", ModernComboSettingsPanel, -138, -115)
+SettingsRedLevelFont:SetFont("Fonts\\FRIZQT__.TTF", 13)
+SettingsRedLevelFont:SetJustifyH("RIGHT")
+SettingsRedLevelFont:SetText(255)
+SettingsRedLevelFont:SetTextColor(1, 1, 1)
+local SettingsRedColorSlider = CreateFrame("Slider", "SettingsRedColorSlider", ModernComboSettingsPanel, "OptionsSliderTemplate")
+SettingsRedColorSlider:ClearAllPoints()
+SettingsRedColorSlider:SetOrientation("VERTICAL")
+SettingsRedColorSlider:SetThumbTexture("Interface\\Buttons\\UI-SliderBar-Button-Vertical")
+SettingsRedColorSlider:SetPoint("TOPLEFT", 50, -210)
+SettingsRedColorSlider:SetMinMaxValues(0, 255)
+SettingsRedColorSlider:SetWidth(10)
+SettingsRedColorSlider:SetHeight(100)
+SettingsRedColorSliderLow:SetText("")
+SettingsRedColorSliderHigh:SetText("")
+SettingsRedColorSlider:SetValueStep(5)
+SettingsRedColorSlider:SetValue(255)
+SettingsRedColorSlider:SetHitRectInsets(-20, -20, -5, -5)
+SettingsRedColorSlider:SetScript("OnMouseUp", function(self, button)
+	modernComboSavedSettings[6] = SettingsRedColorSlider:GetValue()
+	for i=1,5 do
+		comboFont[i]:SetTextColor(modernComboSavedSettings[6]/255, modernComboSavedSettings[7]/255, modernComboSavedSettings[8]/255)
+	end
+end)
+SettingsRedColorSlider:SetScript("OnValueChanged", function()
+	modernComboSavedSettings[6] = SettingsRedColorSlider:GetValue()
+	for i=1,5 do
+		comboFont[i]:SetTextColor(modernComboSavedSettings[6]/255, modernComboSavedSettings[7]/255, modernComboSavedSettings[8]/255)
+	end
+	SettingsRedLevelFont:SetText(SettingsRedColorSlider:GetValue())
+end)
+SettingsRedColorSlider:SetScript("OnEnter", function()
+	modernComboSavedSettings[6] = SettingsRedColorSlider:GetValue()
+	for i=1,5 do
+		comboFont[i]:SetTextColor(modernComboSavedSettings[6]/255, modernComboSavedSettings[7]/255, modernComboSavedSettings[8]/255)
+		comboPoint[i]:Show()
+		comboPoint[i]:SetAlpha(1)
+	end
+	SettingsRedLevelFont:SetText(SettingsRedColorSlider:GetValue())
+end)
+SettingsRedColorSlider:SetScript("OnLeave", function()
+	pointNumber = GetComboPoints()
+	for i=1,5 do
+		if i == pointNumber then
+			comboPoint[i]:Show()
+		else
+			comboPoint[i]:Hide()
+		end
+	end
+end)
+
+local SettingsGreenColorFont = ModernComboSettingsPanel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+SettingsGreenColorFont:SetPoint("TOPLEFT", ModernComboSettingsPanel, 85, -190)
+SettingsGreenColorFont:SetFont("Fonts\\FRIZQT__.TTF", 13)
+SettingsGreenColorFont:SetJustifyH("LEFT")
+SettingsGreenColorFont:SetText("Green")
+local SettingsGreenLevelFont = ModernComboSettingsPanel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+SettingsGreenLevelFont:SetPoint("CENTER", ModernComboSettingsPanel, -88, -115)
+SettingsGreenLevelFont:SetFont("Fonts\\FRIZQT__.TTF", 13)
+SettingsGreenLevelFont:SetJustifyH("RIGHT")
+SettingsGreenLevelFont:SetText(0)
+SettingsGreenLevelFont:SetTextColor(1, 1, 1)
+local SettingsGreenColorSlider = CreateFrame("Slider", "SettingsGreenColorSlider", ModernComboSettingsPanel, "OptionsSliderTemplate")
+SettingsGreenColorSlider:ClearAllPoints()
+SettingsGreenColorSlider:SetOrientation("VERTICAL")
+SettingsGreenColorSlider:SetThumbTexture("Interface\\Buttons\\UI-SliderBar-Button-Vertical")
+SettingsGreenColorSlider:SetPoint("TOPLEFT", 100, -210)
+SettingsGreenColorSlider:SetMinMaxValues(0, 255)
+SettingsGreenColorSlider:SetWidth(10)
+SettingsGreenColorSlider:SetHeight(100)
+SettingsGreenColorSliderLow:SetText("")
+SettingsGreenColorSliderHigh:SetText("")
+SettingsGreenColorSlider:SetValueStep(5)
+SettingsGreenColorSlider:SetValue(0)
+SettingsGreenColorSlider:SetHitRectInsets(-20, -20, -5, -5)
+SettingsGreenColorSlider:SetScript("OnMouseUp", function(self, button)
+	modernComboSavedSettings[7] = SettingsGreenColorSlider:GetValue()
+	for i=1,5 do
+		comboFont[i]:SetTextColor(modernComboSavedSettings[6]/255, modernComboSavedSettings[7]/255, modernComboSavedSettings[8]/255)
+	end
+end)
+SettingsGreenColorSlider:SetScript("OnValueChanged", function()
+	modernComboSavedSettings[7] = SettingsGreenColorSlider:GetValue()
+	for i=1,5 do
+		comboFont[i]:SetTextColor(modernComboSavedSettings[6]/255, modernComboSavedSettings[7]/255, modernComboSavedSettings[8]/255)
+	end
+	SettingsGreenLevelFont:SetText(SettingsGreenColorSlider:GetValue())
+end)
+SettingsGreenColorSlider:SetScript("OnEnter", function()
+	modernComboSavedSettings[7] = SettingsGreenColorSlider:GetValue()
+	for i=1,5 do
+		comboFont[i]:SetTextColor(modernComboSavedSettings[6]/255, modernComboSavedSettings[7]/255, modernComboSavedSettings[8]/255)
+		comboPoint[i]:Show()
+		comboPoint[i]:SetAlpha(1)
+	end
+	SettingsGreenLevelFont:SetText(SettingsGreenColorSlider:GetValue())
+end)
+SettingsGreenColorSlider:SetScript("OnLeave", function()
+	pointNumber = GetComboPoints()
+	for i=1,5 do
+		if i == pointNumber then
+			comboPoint[i]:Show()
+		else
+			comboPoint[i]:Hide()
+		end
+	end
+end)
+
+local SettingsBlueColorFont = ModernComboSettingsPanel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+SettingsBlueColorFont:SetPoint("TOPLEFT", ModernComboSettingsPanel, 141, -190)
+SettingsBlueColorFont:SetFont("Fonts\\FRIZQT__.TTF", 13)
+SettingsBlueColorFont:SetJustifyH("LEFT")
+SettingsBlueColorFont:SetText("Blue")
+local SettingsBlueLevelFont = ModernComboSettingsPanel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+SettingsBlueLevelFont:SetPoint("CENTER", ModernComboSettingsPanel, -38, -115)
+SettingsBlueLevelFont:SetFont("Fonts\\FRIZQT__.TTF", 13)
+SettingsBlueLevelFont:SetJustifyH("RIGHT")
+SettingsBlueLevelFont:SetText(0)
+SettingsBlueLevelFont:SetTextColor(1, 1, 1)
+local SettingsBlueColorSlider = CreateFrame("Slider", "SettingsBlueColorSlider", ModernComboSettingsPanel, "OptionsSliderTemplate")
+SettingsBlueColorSlider:ClearAllPoints()
+SettingsBlueColorSlider:SetOrientation("VERTICAL")
+SettingsBlueColorSlider:SetThumbTexture("Interface\\Buttons\\UI-SliderBar-Button-Vertical")
+SettingsBlueColorSlider:SetPoint("TOPLEFT", 150, -210)
+SettingsBlueColorSlider:SetMinMaxValues(0, 255)
+SettingsBlueColorSlider:SetWidth(10)
+SettingsBlueColorSlider:SetHeight(100)
+SettingsBlueColorSliderLow:SetText("")
+SettingsBlueColorSliderHigh:SetText("")
+SettingsBlueColorSlider:SetValueStep(5)
+SettingsBlueColorSlider:SetValue(0)
+SettingsBlueColorSlider:SetHitRectInsets(-20, -20, -5, -5)
+SettingsBlueColorSlider:SetScript("OnMouseUp", function(self, button)
+	modernComboSavedSettings[8] = SettingsBlueColorSlider:GetValue()
+	for i=1,5 do
+		comboFont[i]:SetTextColor(modernComboSavedSettings[6]/255, modernComboSavedSettings[7]/255, modernComboSavedSettings[8]/255)
+	end
+end)
+SettingsBlueColorSlider:SetScript("OnValueChanged", function()
+	modernComboSavedSettings[8] = SettingsBlueColorSlider:GetValue()
+	for i=1,5 do
+		comboFont[i]:SetTextColor(modernComboSavedSettings[6]/255, modernComboSavedSettings[7]/255, modernComboSavedSettings[8]/255)
+	end
+	SettingsBlueLevelFont:SetText(SettingsBlueColorSlider:GetValue())
+end)
+SettingsBlueColorSlider:SetScript("OnEnter", function()
+	modernComboSavedSettings[8] = SettingsBlueColorSlider:GetValue()
+	for i=1,5 do
+		comboFont[i]:SetTextColor(modernComboSavedSettings[6]/255, modernComboSavedSettings[7]/255, modernComboSavedSettings[8]/255)
+		comboPoint[i]:Show()
+		comboPoint[i]:SetAlpha(1)
+	end
+	SettingsBlueLevelFont:SetText(SettingsBlueColorSlider:GetValue())
+end)
+SettingsBlueColorSlider:SetScript("OnLeave", function()
+	pointNumber = GetComboPoints()
+	for i=1,5 do
+		if i == pointNumber then
+			comboPoint[i]:Show()
+		else
+			comboPoint[i]:Hide()
+		end
+	end
+end)
+
 -- OnEvents
 local ModernComboEventFrame = CreateFrame("Frame")
 ModernComboEventFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
@@ -286,6 +464,9 @@ ModernComboEventFrame:SetScript("OnEvent", function(self, event, ...)
 			SettingsWidthSlider:SetValue(4)
 			modernComboSavedSettings[5] = 18
 			SettingsFontSizeSlider:SetValue(3)
+			modernComboSavedSettings[6] = 255
+			modernComboSavedSettings[7] = 0
+			modernComboSavedSettings[8] = 0
 		else
 			if modernComboSavedSettings[1] == 0 then
 				ModernComboFrame:Hide()
@@ -315,6 +496,25 @@ ModernComboEventFrame:SetScript("OnEvent", function(self, event, ...)
 				x = x + modernComboSavedSettings[4] / 5
 				comboPoint[i]:SetWidth(modernComboSavedSettings[4] / 5)
 				comboFont[i]:SetFont("Fonts\\FRIZQT__.TTF", modernComboSavedSettings[5], "THICKOUTLINE")
+			end
+			if not modernComboSavedSettings[6] then
+				modernComboSavedSettings[6] = 255
+			end
+			if not modernComboSavedSettings[7] then
+				modernComboSavedSettings[7] = 0
+			end
+			if not modernComboSavedSettings[8] then
+				modernComboSavedSettings[8] = 0
+			else
+				SettingsRedColorSlider:SetValue(modernComboSavedSettings[6])
+				SettingsRedLevelFont:SetText(modernComboSavedSettings[6])
+				SettingsGreenColorSlider:SetValue(modernComboSavedSettings[7])
+				SettingsGreenLevelFont:SetText(modernComboSavedSettings[7])
+				SettingsBlueColorSlider:SetValue(modernComboSavedSettings[8])
+				SettingsBlueLevelFont:SetText(modernComboSavedSettings[8])
+				for i=1,5 do
+					comboFont[i]:SetTextColor(modernComboSavedSettings[6]/255, modernComboSavedSettings[7]/255, modernComboSavedSettings[8]/255)
+				end
 			end
 		end
 		ModernComboEventFrame:UnregisterEvent("PLAYER_LOGIN")
